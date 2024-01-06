@@ -1,0 +1,45 @@
+[
+  {
+    "id": "1",
+    "name": "Tech",
+    "children": [
+      {
+        "id": "4",
+        "name": "Gaming",
+        "children": []
+      },
+      {
+        "id": "5",
+        "name": "Artificial Intelligence",
+        "children": []
+      },
+      {
+        "id": "6",
+        "name": "Web 3.0",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Finance",
+    "children": [
+      {
+        "id": "7",
+        "name": "Crypto",
+        "children": [
+          {
+            "id": "8",
+            "name": "Bitcoin",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "World",
+    "children": []
+  }
+]
