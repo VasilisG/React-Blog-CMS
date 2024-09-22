@@ -6,11 +6,11 @@ const TextAreaField = (props) => {
       <label htmlFor={props.name}>{props.label}</label>
       <textarea
         className="form-control my-2"
-        name={props.name}
-        value={props.value}
+        name={props.name ?? ''}
+        value={props.value ?? ''}
         id={props.id}
-        disabled={props.disabled}
-        required={props.required}
+        disabled={props.disabled ?? false}
+        required={props.required ?? false}
         onChange={props.changeCallback}
       />
       <small className="form-text text-muted">{props.smallText}</small>

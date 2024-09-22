@@ -12,7 +12,7 @@ const UserStats = () => {
     });
 
     return (
-        <div className="col-6 dashboard-col">
+        <div className="dashboard-col">
             <div className="card user-stats-container shadow">
                 <SectionHeader title="User stats" icon={faUser}/>
                 <div className="card-body user-stats">

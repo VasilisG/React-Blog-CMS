@@ -217,11 +217,11 @@ exports.deleteCategory = asyncHandler(async (req, res, next) => {
     next(new ErrorResponse(`Category not found with id of ${req.params.id}`, 404))
   }
 
-  category.remove();
+  await category.remove();
 
   res.status(200).json({
     success: true,
-    data: []
+    data: category
   });
   
 });

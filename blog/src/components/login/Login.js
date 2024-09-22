@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { isLoggedIn } = useSelector((state) => {
+  const { isLoggedIn, isLoading, error } = useSelector((state) => {
     return state.auth;
   });
 
@@ -30,6 +30,14 @@ const Login = () => {
     }));
   }
 
+  const showError = () => {
+    return error ? (
+      <div className="mt-2 text-center alert alert-danger" role="alert">
+        {error}
+      </div>
+    ) : null;
+  }
+
   return !isLoggedIn ? (
     <div className="login-container d-flex">
       <form className="login-form col-3" onSubmit={handleSubmit}>
@@ -42,18 +50,19 @@ const Login = () => {
         </div>
         <div className="mt-4 form-item">
           <label htmlFor="email" className="form-label login-label">Email</label>
-          <input id="email" name="email" value={email} onChange={handleChange('email')} className="form-control login-field" type="text"/>
+          <input id="email" name="email" value={email} onChange={handleChange('email')} className="form-control login-field" type="text" required/>
         </div>
         <div className="mt-4 form-item">
           <label htmlFor="password" className="form-label login-label">Password</label>
-          <input id="password" name="password" value={password} onChange={handleChange('password')} className="form-control login-field" type="password"/>
+          <input id="password" name="password" value={password} onChange={handleChange('password')} className="form-control login-field" type="password" required/>
         </div>
         <div className="mt-4">
           <a className="forgot-password-link" href="#">Forgot password?</a>
         </div>
         <div className="mt-4">
-          <button type="submit" className="btn login-button">Login</button>
+          <button type="submit" className="btn login-button" disabled={isLoading}>Login</button>
         </div>
+        {showError()}
       </form>
     </div>
   ) : (

@@ -7,8 +7,8 @@ const BooleanField = (props) => {
       <input
         type="checkbox"
         className="form-check-input"
-        name={props.name}
-        checked={props.value}
+        name={props.name ?? ''}
+        checked={props.value ?? false}
         id={props.id}
         disabled={props.disabled || null}
         required={props.required || null}

@@ -7,7 +7,7 @@ import ImageField from "../fields/form/ImageField";
 import { INITIAL_CATEGORY_STATE } from './Constants';
 import { capitalize } from '../../utils/capitalize';
 import { switchSlashes } from '../../utils/switchSlashes';
-import { createCategory, updateCategory, deleteCategory } from '../../store';
+import { createCategory, updateCategory, deleteCategory, fetchCategories } from '../../store';
 import { BASE_DIR } from '../../config/env';
 
 const CategoryForm = () => {
@@ -26,25 +26,31 @@ const CategoryForm = () => {
   const deleteButtonValue = mode === 'create' ? 'cancel' : 'delete';
   const deleteButtonLabel = capitalize(deleteButtonValue);
 
-  const addCategory = () => {
+  const addCategory = async () => {
     const parent = currentCategory !== null ? currentCategory._id : '';
-    dispatch(createCategory({
+    await dispatch(createCategory({
       ...categoryData,
       parent
     }));
+
+    await dispatch(fetchCategories());
   }
 
-  const putCategory = () => {
-    dispatch(updateCategory({
+  const putCategory = async () => {
+    await dispatch(updateCategory({
       categoryId: currentCategory._id,
       categoryData,
     }));
   }
 
-  const removeCategory = () => {
-    dispatch(deleteCategory({
+  const removeCategory = async () => {
+    const result = await dispatch(deleteCategory({
       categoryId: currentCategory._id
     }));
+
+    if (result.type === 'categories/delete/fulfilled') {
+      await dispatch(fetchCategories());
+    }
   }
 
   const handleSubmit = (event) => {

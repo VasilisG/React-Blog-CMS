@@ -23,7 +23,7 @@ const CommentsStats = () => {
     }, [fetchCommentStats]);
 
     return (
-        <div className="col-6 dashboard-col">
+        <div className="dashboard-col">
             <div className="card comment-stats-container shadow">
                 <SectionHeader title="Comment Stats" icon={faComments}/>
                 <div className="card-body comment-stats">

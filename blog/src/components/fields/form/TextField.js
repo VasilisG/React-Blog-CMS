@@ -8,8 +8,8 @@ const TextField = (props) => {
       <input
         type="text"
         className="form-control my-2"
-        name={props.name}
-        value={props.value}
+        name={props.name ?? ''}
+        value={props.value ?? ''}
         id={props.id}
         disabled={props.disabled || null}
         required={props.required || null}

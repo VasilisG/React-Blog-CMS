@@ -107,7 +107,7 @@ const addDeleteCategoryCase = (builder) => {
 
   builder.addCase(deleteCategory.fulfilled, (state, action) => {
     state.isLoading = false;
-    state.currentCategory = action.payload.data;
+    state.currentCategory = null;
     state.mode = 'edit';
   });
 

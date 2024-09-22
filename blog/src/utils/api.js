@@ -5,6 +5,10 @@ import { API_ENDPOINT, BLOG_COOKIE_NAME } from '../config/env';
 const API = axios.create({
   baseURL: `${API_ENDPOINT}`,
   withCredentials: true,
+  headers: {
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache'
+  }
 });
 
 API.interceptors.request.use(

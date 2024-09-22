@@ -50,6 +50,7 @@ const addRegisterCase = (builder) => {
 const addLoginCase = (builder) => {
   builder.addCase(login.pending, (state, action) => {
     state.isLoading = true;
+    state.error = null;
   });
 
   builder.addCase(login.fulfilled, (state, action) => {
@@ -62,7 +63,7 @@ const addLoginCase = (builder) => {
 
   builder.addCase(login.rejected, (state, action) => {
     state.isLoading = false;
-    state.error = action.payload;
+    state.error = action.payload.error || action.payload.data.error;
   });
 }
 

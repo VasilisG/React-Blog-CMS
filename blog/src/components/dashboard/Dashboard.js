@@ -1,7 +1,6 @@
 import React from 'react';
 import PageWrapper from '../../hoc/PageWrapper';
 import MostViewedPosts from './MostViewedPosts';
-import DailyVisits from './charts/DailyVisits';
 import CommentsStats from './CommentsStats';
 import UserStats from './UserStats';
 
@@ -12,9 +11,10 @@ const Dashboard = () => {
             <hr/>
             <div className="dashboard-widgets row">
                 <MostViewedPosts/>
-                <DailyVisits/>
-                <CommentsStats/>
-                <UserStats/>
+                <div className="col-6">
+                    <CommentsStats/>
+                    <UserStats/>
+                </div>
             </div>
         </div>
     );

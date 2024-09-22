@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
-import { API_ENDPOINT, BASE_DIR } from '../../config/env';
+import { BASE_DIR } from '../../config/env';
 import placeholder from '../../assets/profile_placeholder.png';
 import { logout } from '../../store/thunks/auth';
 import API from '../../utils/api';
@@ -29,7 +28,6 @@ const UserSettings = () => {
 
     useEffect(() => {
         const fetchProfileData = async () => {
-        //   const response = await axios.get(`${API_ENDPOINT}profile`);
           const response = await API.get(`profile`);
           const profile = response.data;
           if(profile.data.image) {

@@ -101,7 +101,7 @@ exports.deleteComment = asyncHandler(async (req, res, next) => {
     next(new ErrorResponse(`Comment not found with id of ${req.params.id}`, 404));
   }
 
-  comment.remove();
+  await comment.remove();
 
   res.status(200).json({
     success: true,
