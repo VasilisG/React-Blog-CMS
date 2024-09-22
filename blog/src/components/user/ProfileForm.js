@@ -6,11 +6,15 @@ import { PROFILE_INITIAL_STATE } from "./Constants";
 import { BASE_DIR } from "../../config/env";
 import API from "../../utils/api";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { useDispatch } from "react-redux";
+import { fetchProfile } from "../../store";
 
 const ProfileForm = () => {
 
   const [profileData, setProfileData] = useState(PROFILE_INITIAL_STATE);
   const [isLoading, setIsLoading] = useState(true);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,6 +50,7 @@ const ProfileForm = () => {
     setIsLoading(true);
     const response = await API.putForm(`profile`, profileData);
     const profile = response.data;
+    await dispatch(fetchProfile());
     setProfileData(profile.data);
     setIsLoading(false);
   }

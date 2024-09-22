@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { BASE_DIR } from '../../config/env';
 import placeholder from '../../assets/profile_placeholder.png';
 import { logout } from '../../store/thunks/auth';
-import API from '../../utils/api';
+import { fetchProfile } from '../../store';
 
 const UserSettings = () => {
 
     const [menuVisible, setMenuVisible] = useState(false);
-    const [profilePicture, setProfilePicture] = useState(placeholder);
+
+    const { image } = useSelector((state) => {
+        return state.profile;
+    })
 
     const dispatch = useDispatch();
+
+    const fetchProfileData = async () => {
+        await dispatch(fetchProfile());
+    }
 
     useEffect(() => {
         function hideMenu(event) {
@@ -27,13 +34,6 @@ const UserSettings = () => {
     }, []);
 
     useEffect(() => {
-        const fetchProfileData = async () => {
-          const response = await API.get(`profile`);
-          const profile = response.data;
-          if(profile.data.image) {
-            setProfilePicture(BASE_DIR + profile.data.image);
-          }
-        }
         fetchProfileData();
     }, []);
 
@@ -53,7 +53,7 @@ const UserSettings = () => {
     return (
         <div className="user-settings-container position-relative">
             <a id="user-settings-link" className="user-settings-link shadow" href="#" onClick={updateDropdownVisible}>
-                <img id="user-settings-image" className="user-settings-image" width="32" height="32" src={profilePicture} alt="User profile"/>
+                <img id="user-settings-image" className="user-settings-image" width="32" height="32" src={BASE_DIR + (image ?? placeholder)} alt="User profile"/>
             </a>
             <div className={`user-settings-dropdown ${menuVisible ? 'user-settings-dropdown-active' : ''} position-absolute`}>
                 <span className="triangle"></span>

@@ -4,6 +4,7 @@ import { commentsReducer } from './slices/commentSlice';
 import { tagsReducer } from './slices/tagSlice';
 import { categoriesReducer } from './slices/categorySlice';
 import { authReducer } from './slices/authSlice';
+import { profileReducer } from './slices/profileSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     categories: categoriesReducer,
     comments: commentsReducer,
     tags: tagsReducer,
-    auth: authReducer
+    auth: authReducer,
+    profile: profileReducer
   },
 });
 
@@ -39,3 +41,6 @@ export * from './thunks/tags/deleteTag';
 export * from './thunks/auth/register';
 export * from './thunks/auth/login';
 export * from './thunks/auth/logout';
+
+export * from './thunks/profile/fetchProfile';
+export * from './thunks/profile/updateProfile';
