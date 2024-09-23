@@ -97,7 +97,7 @@ body {
   display: flex;
   align-items: center;
   max-width: 1300px;
-  margin: auto;
+  margin: 5px auto;
   justify-content: space-between;
 }
 
