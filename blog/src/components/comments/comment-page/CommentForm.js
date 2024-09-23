@@ -7,6 +7,7 @@ import TextAreaField from "../../fields/form/TextAreaField";
 import { COMMENT_INITIAL_STATE } from "../Constants";
 import { updateComment, deleteComment } from "../../../store";
 import API from "../../../utils/api";
+import toast from "react-hot-toast";
 
 const CommentForm = () => {
 
@@ -36,10 +37,14 @@ const CommentForm = () => {
     if(eventType === 'hide' || eventType === 'show') {
       let enabled = eventType === 'hide' ? false : true;
       putComment(enabled)
-      .then(() => getCommentById(commentId));
+      .then(() => {
+        getCommentById(commentId)
+        toast.success('Comment status updated.');
+      });
     }
     else {
       removeComment();
+      toast.success('Comment removed.');
       navigate('/comments', { replace: true });
     }
   }

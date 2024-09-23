@@ -7,10 +7,35 @@ import reportWebVitals from './reportWebVitals';
 
 import { store } from './store';
 import { Provider } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    <Toaster
+      position='bottom-right'
+      containerClassName='blog-toast-container'
+      toastOptions={{
+        className: '',
+        duration: 3000,
+        style: {
+          background: '#363636',
+          color: '#fff',
+        },
+        success: {
+          theme: {
+            primary: 'green',
+            secondary: 'black',
+          },
+        },
+        error: {
+          theme: {
+            primary: 'red',
+            secondary: 'black'
+          }
+        }
+      }}
+    />
   </Provider>,
   document.getElementById('root')
 );

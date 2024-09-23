@@ -7,6 +7,7 @@ import { createTag } from "../../../store/thunks/tags/createTag";
 import { updateTag } from "../../../store/thunks/tags/updateTag";
 import { deleteTag } from "../../../store";
 import API from "../../../utils/api";
+import toast from "react-hot-toast";
 
 const TagForm = () => {
 
@@ -46,12 +47,17 @@ const TagForm = () => {
     if(eventType === 'save') {
       if(isCreate) {
         addTag();
+        toast.success('Tag successfully added.');
         navigate('/tags', { replace: true });
       }
-      else putTag();
+      else {
+        putTag();
+        toast.success('Tag successfully updated.');
+      }
     }
     else {
       removeTag();
+      toast.success('Tag successfully removed.');
       navigate('/tags', { replace: true });
     }
   };

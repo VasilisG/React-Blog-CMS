@@ -8,6 +8,7 @@ import API from "../../utils/api";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import { useDispatch } from "react-redux";
 import { fetchProfile } from "../../store";
+import toast from "react-hot-toast";
 
 const ProfileForm = () => {
 
@@ -53,6 +54,7 @@ const ProfileForm = () => {
     await dispatch(fetchProfile());
     setProfileData(profile.data);
     setIsLoading(false);
+    toast.success('Profile info updated.');
   }
 
   useEffect(() => {

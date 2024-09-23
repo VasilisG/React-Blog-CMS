@@ -13,6 +13,7 @@ import { BASE_DIR } from "../../../config/env";
 import { switchSlashes } from "../../../utils/switchSlashes";
 import { updatePost } from "../../../store/thunks/posts";
 import API from "../../../utils/api";
+import toast from "react-hot-toast";
 
 const PostForm = () => {
 
@@ -132,13 +133,20 @@ const PostForm = () => {
 
   const handleSubmit = (isCreate) => event => {
     event.preventDefault();
-    if(isCreate) addPost();
-    else putPost();
+    if(isCreate) {
+      addPost();
+      toast.success('Post successfully added.');
+    }
+    else {
+      putPost();
+      toast.success('Post successfully updated.');
+    }
   };
 
   const handleDeleteClick = (event) => {
     event.preventDefault();
     removePost();
+    toast.success('Post successfully removed.');
     navigate('/posts', { replace: true });
   }
 

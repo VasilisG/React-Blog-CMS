@@ -9,6 +9,7 @@ import { capitalize } from '../../utils/capitalize';
 import { switchSlashes } from '../../utils/switchSlashes';
 import { createCategory, updateCategory, deleteCategory, fetchCategories } from '../../store';
 import { BASE_DIR } from '../../config/env';
+import toast from 'react-hot-toast';
 
 const CategoryForm = () => {
 
@@ -57,11 +58,20 @@ const CategoryForm = () => {
     event.preventDefault();
     const eventType = event.nativeEvent.submitter.name;
     if(mode === 'create'){
-      if(eventType === 'save') addCategory();
+      if(eventType === 'save') {
+        addCategory();
+        toast.success('Added category.');
+      }
     }
     else {
-      if(eventType === 'update') putCategory();
-      else removeCategory();
+      if(eventType === 'update') {
+        putCategory();
+        toast.success('Updated category.');
+      }
+      else {
+        removeCategory();
+        toast.success('Removed category.');
+      }
     }
   };
 
