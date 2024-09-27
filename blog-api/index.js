@@ -41,7 +41,10 @@ app.use(express.json());
 
 /* CORS setup. */
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: [
+    process.env.CORS_ORIGIN_ADMIN, 
+    process.env.CORS_ORIGIN_FRONTEND
+  ],
   credentials: true,
   optionsSuccessStatus: 200,
 };
