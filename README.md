@@ -18,7 +18,8 @@ A custom headless CMS made with MERN stack to be used as a blog.
 ```
 PORT=3500
 DATABASE="<database_connection_string>"
-CORS_ORIGIN="http://localhost:3000"
+CORS_ORIGIN_ADMIN="http://localhost:3000"
+CORS_ORIGIN_FRONTEND="http://localhost:3001"
 .
 .
 .
